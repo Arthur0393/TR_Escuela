@@ -1,7 +1,6 @@
-/**
 package com.carlos.escuela.exceptions;
 
-import com.carlos.escuela.dto.productos.CustomErrorResponse;
+import com.carlos.escuela.dto.CustomErrorResponse;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
@@ -189,4 +188,3 @@ public class GlobalExceptionHandler {
                 ));
     }
 }
- */

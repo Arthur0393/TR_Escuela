@@ -1,35 +1,61 @@
 package com.carlos.escuela.mappers;
 
+import com.carlos.escuela.dto.datos.DatosCurso;
 import com.carlos.escuela.dto.maestros.MaestroRequest;
 import com.carlos.escuela.dto.maestros.MaestroResponse;
+import com.carlos.escuela.entities.Curso;
+import com.carlos.escuela.entities.Grupo;
 import com.carlos.escuela.entities.Maestro;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
-public class MaestroMapper {
+import java.util.List;
 
-    public MaestroResponse maestroToMaestroResponse(Maestro maestro) {
-        if (maestro == null) return null;
+@Component
+@RequiredArgsConstructor
+public class MaestroMapper implements CommonMapper<MaestroRequest, MaestroResponse, Maestro> {
+
+    private final CursoMapper cursoMapper;
+
+    @Override
+    public Maestro requestAEntidad(MaestroRequest request) {
+        if(request == null) return null;
+
+        return Maestro.builder()
+                .nombre(request.nombre().trim())
+                .apellidoPaterno(request.apellidoPaterno().trim())
+                .apellidoMaterno(request.apellidoMaterno().trim())
+                .email(request.email().trim().toLowerCase())
+                .telefono(request.telefono().trim())
+                .build();
+    }
+
+    @Override
+    public MaestroResponse entidadAResponse(Maestro entidad) {
+        if (entidad == null) return null;
+
+        List<DatosCurso> cursos = entidadADatosCurso(entidad);
 
         return new MaestroResponse(
-                maestro.getId(),
-                maestro.getNombre(),
-                maestro.getApellidoPaterno(),
-                maestro.getApellidoMaterno(),
-                maestro.getEmail(),
-                maestro.getTelefono()
+                entidad.getId(),
+                String.join(" ",
+                        entidad.getNombre(),
+                        entidad.getApellidoPaterno(),
+                        entidad.getApellidoMaterno()),
+                entidad.getEmail(),
+                entidad.getTelefono(),
+                cursos
         );
     }
 
-    public Maestro maestroRequestToMaestro(MaestroRequest maestroRequest) {
-        if (maestroRequest == null) return null;
+    private List<DatosCurso> entidadADatosCurso(Maestro entidad) {
 
-        return Maestro.builder()
-                .nombre(maestroRequest.nombre())
-                .apellidoPaterno(maestroRequest.apellidoPaterno())
-                .apellidoMaterno(maestroRequest.apellidoMaterno())
-                .email(maestroRequest.email())
-                .telefono(maestroRequest.telefono())
-                .build();
+        if (entidad == null) return List.of();
+
+        return entidad.getGrupos().stream()
+        .map(Grupo::getCurso)
+        .map(cursoMapper::entidadADatosCurso).toList();
     }
+
+
 }
