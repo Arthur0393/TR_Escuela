@@ -19,7 +19,7 @@ public class Calificacion {
     @Column(name = "ID_CALIFICACION")
     private Integer id;
 
-    @Column(name = "CALIFICACION", nullable = false)
+    @Column(name = "CALIFICACION", nullable = false, length = 100)
     private BigDecimal calificacion;
 
     @Column(name = "FECHA_REGISTRO", nullable = false)
