@@ -32,5 +32,4 @@ public record MaestroRequest(
         @NotBlank(message = "El telefono es requerido")
         @Size(max = 10, message = "El telefono no puede exceder 10 caracteres")
         String telefono
-) {
-}
+) {}

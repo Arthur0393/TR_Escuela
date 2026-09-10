@@ -8,7 +8,9 @@ public class StringCustomUtils {
     private static final DateTimeFormatter formato =
             DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public static void validarNoVacio(String texto, String mensaje) {
+    public static void validarNoVacio(
+            String texto,
+            String mensaje) {
         if (texto == null || texto.isBlank()) {
             throw new IllegalArgumentException(mensaje);
         }
@@ -27,15 +29,14 @@ public class StringCustomUtils {
         }
     }
 
-    public static void validarTamanio(
-            String texto,
-            String mensaje,
+    public static void validarRango(
+            Integer valor,
             Integer min,
-            Integer max
+            Integer max,
+            String mensaje
     ) {
-        validarNoVacio(texto, mensaje);
 
-        if (texto.length() < min || texto.length() > max) {
+        if (valor == 0 || valor < min || valor > max) {
             throw new IllegalArgumentException(mensaje);
         }
     }

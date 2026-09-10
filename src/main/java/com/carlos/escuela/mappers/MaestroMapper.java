@@ -3,7 +3,6 @@ package com.carlos.escuela.mappers;
 import com.carlos.escuela.dto.datos.DatosCurso;
 import com.carlos.escuela.dto.maestros.MaestroRequest;
 import com.carlos.escuela.dto.maestros.MaestroResponse;
-import com.carlos.escuela.entities.Curso;
 import com.carlos.escuela.entities.Grupo;
 import com.carlos.escuela.entities.Maestro;
 import lombok.RequiredArgsConstructor;
