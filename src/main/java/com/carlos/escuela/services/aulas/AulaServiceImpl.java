@@ -10,7 +10,6 @@ import com.carlos.escuela.repositories.AulaRepository;
 import com.carlos.escuela.repositories.GrupoRepository;
 import com.carlos.escuela.services.aulas.AulaService;
 import com.carlos.escuela.utils.ServiceUtils;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -95,30 +94,6 @@ public class AulaServiceImpl implements AulaService {
     }
 
 
-/*
-    @Override
-    public void eliminar(Long id) {
-
-        Aula aula = obtenerAula(id);
-
-        log.info("PASO 1 - Aula encontrada: {}", id);
-
-        if (grupoRepository.existsByAulaId(id)) {
-
-            log.info("PASO 2 - El aula tiene grupos");
-
-            throw new EntityNotFoundException(
-                    "No se puede eliminar el aula porque tiene grupos asignados"
-            );
-        }
-
-        log.info("PASO 3 - El aula NO tiene grupos");
-
-        aulaRepository.delete(aula);
-
-        log.info("PASO 4 - Aula eliminada");
-    }
-*/
     private Aula obtenerAula(Long id){
         return ServiceUtils.ObtenerEntidadOException(
                 aulaRepository,
