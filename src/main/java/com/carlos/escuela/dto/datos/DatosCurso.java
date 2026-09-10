@@ -7,7 +7,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Datos de un curso")
 public record DatosCurso(
 
-        @Schema(description = "Nombre del curso", example = "Matematicas I")
+        @Schema(description = "Nombre del curso",
+                example = "Matematicas I")
         String nombre,
 
         @Schema(description = "Descripcion del curso", example = "Curso de calculo integral")

@@ -119,6 +119,19 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    @ExceptionHandler(EntidadRelacionadaException.class)
+    public ResponseEntity<CustomErrorResponse> handleEntidadRelacionadaException(
+            EntidadRelacionadaException e) {
+
+        log.warn("Entidad relacionada: {}", e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new CustomErrorResponse(
+                        HttpStatus.CONFLICT.value(),
+                        e.getMessage()
+                ));
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<CustomErrorResponse> handleDataIntegrityViolationException(
             DataIntegrityViolationException e) {

@@ -10,7 +10,8 @@ import java.math.BigDecimal;
 @Schema(description = "Datos de una calificacion")
 public record DatosCalificacion(
 
-        @Schema(description = "Nombre del curso", example = "Matematicas I")
+        @Schema(description = "Nombre del curso",
+                example = "Matematicas I")
         String curso,
 
         @Schema(description = "Descripcion del curso", example = "Curso de calculo integral")
