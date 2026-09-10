@@ -1,6 +1,7 @@
 package com.carlos.escuela.controller;
 
 import com.carlos.escuela.services.CrudService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;

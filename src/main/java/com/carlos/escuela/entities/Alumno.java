@@ -87,7 +87,6 @@ public class Alumno {
         validarDatos(nombre, apellidoPaterno, apellidoMaterno);
         asignarDatosAcademicos(email, matricula);
 
-
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;

@@ -88,8 +88,8 @@ public class AlumnoServiceImpl implements AlumnoService {
     @Override
     public void eliminar(Long id) {
         Alumno alumno = obtenerAlumno(id);
-        alumnoRepository.delete(alumno);
-        log.info("Alumno con id {} eliminado correctamente", id);
+
+        log.info("Eliminando alumno con id {}", id);
         if(inscripcionRepository.existsByAlumnoId(id))
             throw new EntityNotFoundException("No se puede eliminar el alumno ya tiene inscripcion asignada");
 
