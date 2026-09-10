@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 public enum DiaSemana {
 
     LUNES("Lunes"),
-    MARTES("Marte"),
+    MARTES("Martes"),
     MIERCOLES("Miercoles"),
     JUEVES("Jueves"),
     VIERNES("Viernes"),
@@ -29,7 +29,7 @@ public enum DiaSemana {
             if(StringCustomUtils.quitarAcentos(diaSemana.descripcion).equalsIgnoreCase(descripcionNormalizado))
                 return diaSemana;
         }
-        throw new RecursoNoEncontradoException("No existe el categoria con ese descripcion" + descripcion);
+        throw new RecursoNoEncontradoException("No existe un día de la semana con esa descripción: " + descripcion);
 
     }
 

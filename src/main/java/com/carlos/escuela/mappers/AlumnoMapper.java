@@ -25,7 +25,7 @@ public class AlumnoMapper implements CommonMapper <AlumnoRequest, AlumnoResponse
                 .apellidoMaterno(request.apellidoMaterno().trim())
         .build();
 
-        //REcursivida y sobrecarga de metodos
+        //Recursivida y sobrecarga de metodos
 
         //Ordenamiento con recursividad
     }

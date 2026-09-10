@@ -7,7 +7,6 @@ import com.carlos.escuela.exceptions.EntidadRelacionadaException;
 import com.carlos.escuela.mappers.CursoMapper;
 import com.carlos.escuela.repositories.CursoRepository;
 import com.carlos.escuela.repositories.GrupoRepository;
-import com.carlos.escuela.services.cursos.CursoService;
 import com.carlos.escuela.utils.ServiceUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,13 +38,13 @@ public class CursoServiceImpl implements CursoService {
                 .toList();
     }
 
-    //Manda a traer el metodo obtenerPorId
+    //Manda a traer el método obtenerPorId
     @Override
     public CursoResponse obtenerPorId(Long id){ return cursoMapper
             .entidadAResponse(obtenerCurso(id));
     }
 
-    //Metodo para registrar
+    //Método para registrar
     @Override
     public CursoResponse registrar(CursoRequest request) {
 
@@ -58,7 +57,7 @@ public class CursoServiceImpl implements CursoService {
         return  cursoMapper.entidadAResponse(curso);
     }
 
-    //Metodo para actualizar
+    //Método para actualizar
 
     @Override
     public CursoResponse actualizar(CursoRequest request, Long id) {
@@ -83,7 +82,7 @@ public class CursoServiceImpl implements CursoService {
     public void eliminar(Long id) {
 
         Curso curso = obtenerCurso(id);
-        log.info("Eliminando cuso con id {}", id);
+        log.info("Eliminando curso con id {}", id);
         if(grupoRepository.existsByCursoId(id))
             throw new EntidadRelacionadaException("No se puede eliminar un curso que ya tiene grupos asignados");
 
@@ -98,7 +97,7 @@ public class CursoServiceImpl implements CursoService {
                 id,
                 Curso.class
         );
-
-
     }
+
+
 }
