@@ -30,10 +30,7 @@ public enum DiaSemana {
                 return diaSemana;
         }
         throw new RecursoNoEncontradoException("No existe un día de la semana con esa descripción: " + descripcion);
-
     }
-
-
 }
 
 

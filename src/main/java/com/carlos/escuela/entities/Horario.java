@@ -26,12 +26,24 @@ public class Horario {
     private Grupo grupo;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="DIA", nullable = false)
+    @Column(name = "DIA", nullable = false)
     private DiaSemana diaSemana;
 
-    @Column(name = "HORA_INICIO",length = 5, nullable = false)
+    @Column(name = "HORA_INICIO", length = 5, nullable = false)
     private String horaInicio;
 
     @Column(name = "HORA_FIN", length = 5, nullable = false)
     private String horaFin;
+
+    public void actualizar(
+            Grupo grupo,
+            DiaSemana diaSemana,
+            String horaInicio,
+            String horaFin
+    ) {
+        this.grupo = grupo;
+        this.diaSemana = diaSemana;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+    }
 }
