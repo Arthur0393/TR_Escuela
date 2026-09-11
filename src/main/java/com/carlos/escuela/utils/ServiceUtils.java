@@ -18,7 +18,7 @@ public class ServiceUtils {
         log.info("Buscando {} con id: {}", nombreEntidad, id);
 
         return repository.findById(id).orElseThrow(()->
-            new RecursoNoEncontradoException(nombreEntidad + " no concontrado con id: " +id));
+            new RecursoNoEncontradoException(nombreEntidad + " no encontrado con id: " +id));
 
 
     }
