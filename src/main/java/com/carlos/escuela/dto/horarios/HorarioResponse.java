@@ -2,23 +2,37 @@ package com.carlos.escuela.dto.horarios;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "Informacion del horario")
+@Schema(description = "Información del horario")
 public record HorarioResponse(
 
-        @Schema(description = "ID del Horario", example = "1")
-        long idHorario,
+        @Schema(description = "ID del horario", example = "1")
+        Long id,
 
-        @Schema(description = "ID del Grupo", example = "1")
-        long idGrupo,
+        @Schema(description = "Información del grupo")
+        GrupoHorarioResponse grupo,
 
-        @Schema(description = "Dia del curso", example = "LUNES")
-        String dia,
-
-        @Schema(description = "Horario Inicial", example = "7:00")
-        String horaInicio,
-
-        @Schema(description = "Horario Final", example = "11:00")
-        String horaFin
-
+        @Schema(
+                description = "Día y horario",
+                example = "Lunes 08:00 10:00"
+        )
+        String horario
 ) {
+
+        public record GrupoHorarioResponse(
+
+                @Schema(description = "Curso", example = "Matemáticas I")
+                String curso,
+
+                @Schema(
+                        description = "Maestro",
+                        example = "Laura Martínez Martínez"
+                )
+                String maestro,
+
+                @Schema(description = "Aula", example = "Aula 101")
+                String aula,
+
+                @Schema(description = "Periodo", example = "2025-1")
+                String periodo
+        ) {}
 }
