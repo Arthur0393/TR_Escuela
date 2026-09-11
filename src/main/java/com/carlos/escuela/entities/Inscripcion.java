@@ -1,41 +1,46 @@
-package com.carlos.escuela.entities;
+        package com.carlos.escuela.entities;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+        import jakarta.persistence.*;
+        import lombok.AllArgsConstructor;
+        import lombok.Builder;
+        import lombok.Getter;
+        import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+        import java.time.LocalDate;
 
-@Entity
-@Table(name = "INSCRIPCIONES", uniqueConstraints = @UniqueConstraint(
-        name = "INSCRIPCION_ALU_GRU_UK",
-        columnNames = {"ID_ALUMNO", "ID_GRUPO"}
-))
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Getter
-public class Inscripcion {
+        @Entity
+        @Table(name = "INSCRIPCIONES", uniqueConstraints = @UniqueConstraint(
+                name = "INSCRIPCION_ALU_GRU_UK",
+                columnNames = {"ID_ALUMNO", "ID_GRUPO"}
+        ))
+        @AllArgsConstructor
+        @NoArgsConstructor
+        @Builder
+        @Getter
+        public class Inscripcion {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_INSCRIPCION")
-    private Integer id;
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            @Column(name = "ID_INSCRIPCION")
+            private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_ALUMNO", nullable = false)
-    private Alumno alumno;
+            @ManyToOne(fetch = FetchType.LAZY)
+            @JoinColumn(name = "ID_ALUMNO", nullable = false)
+            private Alumno alumno;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_GRUPO", nullable = false)
-    private Grupo grupo;
+            @ManyToOne(fetch = FetchType.LAZY)
+            @JoinColumn(name = "ID_GRUPO", nullable = false)
+            private Grupo grupo;
 
-    @Column(name = "FECHA_INSCRIPCION")
-    private LocalDate fechaInscripcion = LocalDate.now();
+            @Builder.Default
+            @Column(name = "FECHA_INSCRIPCION")
+            private LocalDate fechaInscripcion = LocalDate.now();
 
-    @OneToOne(mappedBy = "inscripcion") //mappedBy va en la complementaria //Relaciones JPA
-    private Calificacion calificacion;
-}
+            @OneToOne(mappedBy = "inscripcion")
+            private Calificacion calificacion;
+
+            public void actualizar(Alumno alumno, Grupo grupo) {
+                this.alumno = alumno;
+                this.grupo = grupo;
+            }
+        }
