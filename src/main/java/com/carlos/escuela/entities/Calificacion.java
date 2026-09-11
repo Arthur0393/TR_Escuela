@@ -1,7 +1,10 @@
 package com.carlos.escuela.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,15 +20,28 @@ public class Calificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CALIFICACION")
-    private Integer id;
-
-    @Column(name = "CALIFICACION", nullable = false, length = 100)
-    private BigDecimal calificacion;
-
-    @Column(name = "FECHA_REGISTRO", nullable = false)
-    private LocalDate fechaRegistro = LocalDate.now();
+    private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_INSCRIPCION", nullable = false,unique = true)
+    @JoinColumn(
+            name = "ID_INSCRIPCION",
+            nullable = false
+    )
     private Inscripcion inscripcion;
+
+    @Column(
+            name = "CALIFICACION",
+            nullable = false,
+            precision = 3,
+            scale = 1
+    )
+    private BigDecimal calificacion;
+
+    @Builder.Default
+    @Column(name = "FECHA_REGISTRO")
+    private LocalDate fechaRegistro = LocalDate.now();
+
+    public void actualizar(BigDecimal calificacion) {
+        this.calificacion = calificacion;
+    }
 }
